@@ -18,7 +18,6 @@ let options = {
 
 let bot = new TelegramBot(token, options)
 
-// This informs the Telegram servers of the new webhook.
 bot.setWebHook(`${url}/bot${token}`)
 
 client.connect((err, client) => {
