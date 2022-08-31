@@ -19,12 +19,11 @@ let options = {
 let bot = new TelegramBot(token, options)
 
 // This informs the Telegram servers of the new webhook.
-// Note: we do not need to pass in the cert, as it already provided
 bot.setWebHook(`${url}/bot${token}`)
 
 client.connect((err, client) => {
 
-  let pages = client.db("").collection("")
+  let pages = client.db("fetch-book").collection("Pages")
 
   bot.on("message", (msg) => {
 
