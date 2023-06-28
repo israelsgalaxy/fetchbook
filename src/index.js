@@ -3,9 +3,11 @@ const TelegramBot = require("node-telegram-bot-api")
 const mongodb = require("mongodb")
 const { getBooks, extract } = require("./utils")
 const Crypto = require("crypto")
-const { token, url, mongo_uri } = require("./secrets.json")
+const dotenv = require("dotenv")
 
-let client = new mongodb.MongoClient(mongo_uri, {
+dotenv.config()
+
+let client = new mongodb.MongoClient(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 })
@@ -16,9 +18,9 @@ let options = {
   }
 }
 
-let bot = new TelegramBot(token, options)
+let bot = new TelegramBot(process.env.BOT_TOKEN, options)
 
-bot.setWebHook(`${url}/bot${token}`)
+bot.setWebHook(`${process.env.RENDER_EXTERNAL_URL}/bot${process.env.BOT_TOKEN}`)
 
 client.connect((err, client) => {
 
